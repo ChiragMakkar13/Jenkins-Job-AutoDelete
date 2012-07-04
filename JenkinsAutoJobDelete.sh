@@ -20,7 +20,9 @@ sed -e 's|/var/lib/jenkins/jobs/||g' | \
 
 awk -F/ '{print $1}' | \
 
-grep -v __ | \
+grep -i ^TC | \
+
+grep -i -E "main$|caboose$" | \
 
 grep -v -i Template > /var/tmp/${DATE}_deletedjobs.txt
 
@@ -43,3 +45,5 @@ then
 fi
 
 done
+
+rm -f /var/tmp/${DATE}_deletedjobs.txt
